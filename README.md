@@ -3,7 +3,7 @@
 AI-powered civic engagement platform that helps citizens report local infrastructure issues and helps governments resolve them faster.
 
 **APP**
-🔗 Link :- https://community-hero-git-main-tarun-saini-s-projects.vercel.app/
+🔗 Link :- https://community-hero-chi.vercel.app/auth/login
 
 ## Overview
 
