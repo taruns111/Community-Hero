@@ -1,23 +1,51 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { auth } from '@/lib/firebase';
 import { useApp } from '@/lib/store';
+import { signOut } from 'firebase/auth';
+import { AnimatePresence, motion } from 'framer-motion';
 import {
-  Bell, Moon, Sun, Menu, X, Map, BarChart3, Users,
-  Plus, ChevronDown, LogOut, Settings, User, Shield,
-  Activity, Home, Trophy, Heart
+  Activity,
+  BarChart3,
+  Bell,
+  ChevronDown,
+  Heart,
+  Home,
+  LogOut,
+  Map,
+  Menu,
+  Moon,
+  Plus,
+  Settings,
+  Shield,
+  Sun,
+  Trophy,
+  User,
+  X
 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Navbar() {
   const { user, notifications, unreadCount, darkMode, toggleDarkMode, markAllNotificationsRead } = useApp();
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const notifRef = useRef<HTMLDivElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.error('Sign out error:', err);
+    } finally {
+      setProfileOpen(false);
+      router.push('/auth/login');
+    }
+  };
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -204,7 +232,7 @@ export default function Navbar() {
                         <Link href="/admin" className="flex items-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all">
                           <Settings size={14} /> Admin Panel
                         </Link>
-                        <button className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-lg transition-all">
+                        <button onClick={handleSignOut} className="w-full flex items-center gap-2 px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-lg transition-all">
                           <LogOut size={14} /> Sign Out
                         </button>
                       </div>
