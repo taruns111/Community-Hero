@@ -2,6 +2,9 @@
 
 AI-powered civic engagement platform that helps citizens report local infrastructure issues and helps governments resolve them faster.
 
+**APP**
+🔗 Link :- https://community-hero-git-main-tarun-saini-s-projects.vercel.app/
+
 ## Overview
 
 CivicAI lets citizens report problems like potholes, garbage overflow, water leakage, broken street lights, and similar civic issues by simply uploading a photo. Google Gemini's vision model analyzes the image to classify the issue, assess severity, and recommend the responsible department — removing the friction of manual reporting. Citizens can track reports on a live map, verify nearby issues, and climb a community leaderboard, while government users get an analytics dashboard to prioritize and resolve issues.
